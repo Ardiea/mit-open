@@ -15,7 +15,7 @@ env:
 
 jobs:
   # runs if CI workflow was successful OR if this was manually triggered
-  on-success:
+  on-failure:
     runs-on: ubuntu-latest
     if: >
       github.event_name == 'workflow_dispatch' ||
@@ -58,10 +58,10 @@ jobs:
           heroku_email: ${{ secrets.HEROKU_EMAIL }}
           branch: release-candidate
   # runs ONLY on a failure of the CI workflow
-  on-failure:
-    runs-on: ubuntu-latest
-    if: >
-      github.event_name == 'workflow_dispatch' ||
-      github.event.workflow_run.conclusion == 'failure'
-    steps:
-      - run: echo 'The triggering workflow failed'
+#  on-failure:
+#    runs-on: ubuntu-latest
+#    if: >
+#      github.event_name == 'workflow_dispatch' ||
+#      github.event.workflow_run.conclusion == 'failure'
+#    steps:
+#      - run: echo 'The triggering workflow failed'
